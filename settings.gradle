@@ -1,0 +1,2 @@
+rootProject.name='WO5'
+include ':app'

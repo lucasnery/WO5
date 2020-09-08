@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textViewEntrar"
+        android:layout_width="47dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/entrar"
+        android:textAppearance="@style/entrar"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewLogo"
+        android:layout_width="0dp"
+        android:layout_height="308dp"
+        android:layout_marginTop="54dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/button_prim"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_button_prim"
+        android:fontFamily="@font/inter_semi_bold"
+        android:lineHeight="19sp"
+        android:text="@string/executar_teste"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
+
+    <TextView
+        android:id="@+id/textViewCompromisso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/inter_medium"
+        android:lineHeight="29sp"
+        android:text="@string/compromisso"
+        android:textColor="#001638"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/button_prim"
+        app:layout_constraintStart_toStartOf="@+id/button_prim"
+        app:layout_constraintTop_toBottomOf="@+id/button_prim" />
+
+    <TextView
+        android:id="@+id/textViewCompDetalhes"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/inter_medium"
+        android:lineHeight="19sp"
+        android:text="@string/n_s_avaliaremos_os_n_veis_e_as_taxas_de_sua_conex_o_com_a_rede_dados_sens_veis_n_o_ser_o_coletados"
+        android:textAlignment="center"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewCompromisso"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/textViewCompromisso"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCompromisso" />
+
+    <TextView
+        android:id="@+id/textViewSobreNos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/sobre_n_s"
+        android:textAppearance="@style/sobre_n_s"
+        app:layout_constraintEnd_toEndOf="@+id/textViewCompDetalhes"
+        app:layout_constraintStart_toStartOf="@+id/textViewCompDetalhes"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCompDetalhes" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

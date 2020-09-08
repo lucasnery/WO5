@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">WO5</string>
+    <string name="signal_strenght">Signal Strenght</string>
+    <string name="thp_test">THP Test</string>
+    <string name="entrar">Entrar</string>
+    <string name="compromisso">Compromisso</string>
+    <string name="n_s_avaliar">Nós avaliaremos os níveis e as taxas de sua conexão com a rede,
+        dados sensíveis não serão coletados.</string>
+    <string name="todo">TODO</string>
+    <string name="executar_teste">Executar Teste</string>
+    <string name="sobre_n_s">Sobre nós</string>
+    <string name="n_s_avaliaremos_os_n_veis_e_as_taxas_de_sua_conex_o_com_a_rede_dados_sens_veis_n_o_ser_o_coletados">Nós avaliaremos os níveis e as taxas de sua conexão com a rede, dados sensíveis não serão coletados.</string>
+    <string name="acessar">Acessar</string>
+    <string name="n_o_tem_cad">Não tem cadastro?</string>
+    <string name="quero_receber_relat_rios_e_informa_es_relevantes">Quero receber relatórios e informações relevantes.</string>
+    <string name="esqueceu_sua_senha">Esqueceu sua senha?</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="digite_sua_senha_novamente">Digite sua senha novamente</string>
+    <string name="digite_sua_senha">digite sua senha</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="imagem_logo_texto">Imagem logo texto</string>
+</resources>
