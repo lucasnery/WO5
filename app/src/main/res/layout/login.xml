@@ -29,9 +29,11 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_bg"
         android:fontFamily="@font/inter_medium"
+        android:hint="@string/digite_seu_email"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
-        android:textAlignment="viewStart"
+        android:singleLine="false"
+        android:textAlignment="center"
         android:textColor="#BDBDBD"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/textViewAcesso"
@@ -48,58 +50,76 @@
         android:background="@drawable/ic_bg"
         android:ems="10"
         android:fontFamily="@font/inter_medium"
+        android:hint="@string/digite_sua_senha"
         android:inputType="textPassword"
+        android:textAlignment="center"
         android:textColor="#BDBDBD"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <TextView
-        android:id="@+id/n_o_tem_cad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:fontFamily="@font/inter_semi_bold"
-        android:gravity="top"
-        android:text="@string/n_o_tem_cad"
-        android:textAppearance="@style/n_o_tem_cad"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
-
     <Button
         android:id="@+id/buttonEntrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/ic_button_prim"
         android:fontFamily="@font/inter_semi_bold"
-        android:text="Entrar"
+        android:text="@string/entrar"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/n_o_tem_cad" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+    <Button
+        android:id="@+id/buttonCadastrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_button_prim"
+        android:fontFamily="@font/inter_semi_bold"
+        android:text="@string/cadastrar"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 
     <TextView
         android:id="@+id/textViewEsqueceu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/inter_semi_bold"
         android:text="Esqueceu sua senha?"
         android:textAlignment="center"
         android:textColor="#37749F"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/buttonEntrar"
-        app:layout_constraintStart_toStartOf="@+id/buttonEntrar"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonCadastrar"
+        app:layout_constraintStart_toStartOf="@+id/buttonCadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCadastrar" />
+
+    <ProgressBar
+        android:id="@+id/progressBarEntrar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:indeterminateTint="#37749F"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCadastrar"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="@+id/buttonCadastrar"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEsqueceu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

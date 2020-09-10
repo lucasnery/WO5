@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText mainEditTextSingleton;
@@ -21,12 +24,14 @@ public class MainActivity extends AppCompatActivity {
     String singleton;
     SignalStrenght ss;
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
+    private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
         buttonSignalStrenght = findViewById(R.id.button_prim);
         textViewEntrar = findViewById(R.id.textViewEntrar);
         //DataModel.getInstance().setContext(MainActivity.this);
@@ -55,6 +60,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
     }
 
     @Override

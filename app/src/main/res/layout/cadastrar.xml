@@ -6,19 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewEsqueceuC"
+    <ProgressBar
+        android:id="@+id/progressBarCadastrar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_semi_bold"
-        android:text="@string/esqueceu_sua_senha"
-        android:textAlignment="center"
-        android:textColor="#37749F"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        android:layout_marginBottom="16dp"
+        android:indeterminateTint="#37749F"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCadastrar"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCadastrar"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/buttonCadastrar" />
 
     <TextView
         android:id="@+id/entrarCadastrar"
@@ -47,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNome"
+        android:id="@+id/editTextCadastrarNome"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -58,12 +57,13 @@
         android:hint="@string/digite_seu_nome"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCadastrar" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextCadastrarEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -72,14 +72,15 @@
         android:background="@drawable/ic_bg"
         android:ems="10"
         android:hint="@string/digite_seu_email"
+        android:importantForAutofill="no"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNome"
-        app:layout_constraintStart_toStartOf="@+id/editTextNome"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
-        android:importantForAutofill="no" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCadastrarNome"
+        app:layout_constraintStart_toStartOf="@+id/editTextCadastrarNome"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCadastrarNome" />
 
     <EditText
-        android:id="@+id/editTextPass"
+        android:id="@+id/editTextCadastrarSenha"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -88,14 +89,15 @@
         android:background="@drawable/ic_bg"
         android:ems="10"
         android:hint="@string/digite_sua_senha"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editText3"
-        app:layout_constraintStart_toStartOf="@+id/editText3"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        android:importantForAutofill="no" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCadastrarEmail"
+        app:layout_constraintStart_toStartOf="@+id/editTextCadastrarEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCadastrarEmail" />
 
     <EditText
-        android:id="@+id/editTextPassR"
+        android:id="@+id/editTextCadastrarConfSenha"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
@@ -104,11 +106,12 @@
         android:background="@drawable/ic_bg"
         android:ems="10"
         android:hint="@string/digite_sua_senha_novamente"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPass"
-        app:layout_constraintStart_toStartOf="@+id/editTextPass"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPass"
-        android:importantForAutofill="no" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCadastrarSenha"
+        app:layout_constraintStart_toStartOf="@+id/editTextCadastrarSenha"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCadastrarSenha" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -117,13 +120,19 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:buttonTint="#37749F"
+        android:checked="false"
+        android:contextClickable="false"
+        android:fontFamily="@font/inter_regular"
         android:text="@string/quero_receber_relat_rios_e_informa_es_relevantes"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassR"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassR"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassR" />
+        android:textColor="#666666"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCadastrarConfSenha"
+        app:layout_constraintStart_toStartOf="@+id/editTextCadastrarConfSenha"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCadastrarConfSenha" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

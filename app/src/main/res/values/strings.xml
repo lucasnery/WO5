@@ -15,9 +15,9 @@
     <string name="quero_receber_relat_rios_e_informa_es_relevantes">Quero receber relatórios e informações relevantes.</string>
     <string name="esqueceu_sua_senha">Esqueceu sua senha?</string>
     <string name="cadastrar">Cadastrar</string>
-    <string name="digite_sua_senha_novamente">Digite sua senha novamente</string>
-    <string name="digite_sua_senha">digite sua senha</string>
-    <string name="digite_seu_email">Digite seu email</string>
-    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="digite_sua_senha_novamente">Confirme a Senha:</string>
+    <string name="digite_sua_senha">Senha:</string>
+    <string name="digite_seu_email">Email:</string>
+    <string name="digite_seu_nome">Nome:</string>
     <string name="imagem_logo_texto">Imagem logo texto</string>
 </resources>

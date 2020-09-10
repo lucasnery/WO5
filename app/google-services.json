@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71304453448",
+    "firebase_url": "https://wireless-observer.firebaseio.com",
+    "project_id": "wireless-observer",
+    "storage_bucket": "wireless-observer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71304453448:android:c084d34978a2d7ff2ee77d",
+        "android_client_info": {
+          "package_name": "com.example.wo5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71304453448-kmb2bb3c80mncnufip4hs9pg66rsvnga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr3QwEIyA2IWAyT7Rc7HALuTVIi2D887Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71304453448-kmb2bb3c80mncnufip4hs9pg66rsvnga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
