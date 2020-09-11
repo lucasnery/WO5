@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/bg"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_bg_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogoTexto" />
+
+    <TextView
+        android:id="@+id/textViewSair"
+        android:layout_width="47dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Sair"
+        android:textAlignment="center"
+        android:textAppearance="@style/entrar"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewLogoTexto"
@@ -18,105 +46,75 @@
         app:srcCompat="@drawable/logo_texto_trans" />
 
     <View
-        android:id="@+id/bg"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:background="@drawable/ic_bg_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLogoTexto" />
-
-    <View
-        android:id="@+id/vector_plus"
+        android:id="@+id/vector_user"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="6dp"
-        android:background="@drawable/ic_vector_plus"
+        android:background="@drawable/ic_vector_user"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
         app:layout_constraintStart_toStartOf="@+id/bg"
         app:layout_constraintTop_toTopOf="@+id/bg"
         app:layout_constraintVertical_bias="1.0" />
 
     <View
-        android:id="@+id/vector_bar"
+        android:id="@+id/vector_antenna"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/ic_vector_bar"
+        android:layout_marginStart="42dp"
+        android:background="@drawable/ic_vector_antenna"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_plus"
+        app:layout_constraintStart_toEndOf="@+id/vector_user"
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <View
-        android:id="@+id/vector_map"
+        android:id="@+id/vector_dashboard"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/ic_vector_map"
+        android:layout_marginStart="42dp"
+        android:background="@drawable/ic_vector_dashboard"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_bar"
+        app:layout_constraintStart_toEndOf="@+id/vector_antenna"
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <View
-        android:id="@+id/vector_files"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:id="@+id/vector_config"
+        android:layout_width="34dp"
+        android:layout_height="42dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/ic_vector_files"
+        android:layout_marginStart="42dp"
+        android:background="@drawable/ic_vector_config"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_map"
+        app:layout_constraintStart_toEndOf="@+id/vector_dashboard"
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <View
-        android:id="@+id/vector_level"
+        android:id="@+id/vector_admin"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/ic_vector_level"
+        android:layout_marginStart="42dp"
+        android:background="@drawable/ic_vector_admin"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_files"
-        app:layout_constraintTop_toTopOf="@+id/bg" />
-
-    <View
-        android:id="@+id/vector_sent"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/ic_vector_sent"
-        app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_level"
+        app:layout_constraintStart_toEndOf="@+id/vector_config"
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <FrameLayout

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="vectorAntenna" type="id" />
+    <item name="vectorDashboard" type="id" />
+    <item name="vectorAdmin" type="id" />
+    <item name="vectorPlus" type="id" />
+    <item name="vectorLevel" type="id" />
+    <item name="vectorMap" type="id" />
+    <item name="vectorFiles" type="id" />
+    <item name="vectorSent" type="id" />
+</resources>

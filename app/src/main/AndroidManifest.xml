@@ -26,7 +26,9 @@
         <activity android:name=".SignalStrenght"></activity>
         <activity android:name=".Login"></activity>
         <activity android:name=".Cadastrar"></activity>
-        <activity android:name=".Inicio_Logado"></activity>
+        <activity android:name=".InicioLogado"></activity>
+        <activity android:name=".Resultado"></activity>
+        <activity android:name=".InicioAvancado"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

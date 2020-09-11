@@ -8,6 +8,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class DataModel {
 
     private FirebaseUser user;
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
+    }
+
+    public void setmAuth(FirebaseAuth mAuth) {
+        this.mAuth = mAuth;
+    }
+
     private FirebaseAuth mAuth;
     private String singleton;
     private Context context;
@@ -39,6 +48,10 @@ public class DataModel {
         if(instance == null)
             instance = new DataModel();
         return instance;
+    }
+
+    public void signOut(){
+        mAuth.signOut();
     }
 
     public String getSingleton() {

@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,20 +16,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthMultiFactorException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.MultiFactorResolver;
 //import com.example.wo5.databinding.login;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
-    private Button buttonCadastrar;
-    private Button buttonEntrar;
     private static final String TAG = "Login";
     private FirebaseAuth mAuth;
-    private ProgressBar progressBarEntrar;
-    private TextView editTextEmail;
-    private TextView editTextPassword;
     private FirebaseUser user;
     private LoginBinding mBinding;
 
@@ -55,16 +46,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        //updateUI(mAuth.getCurrentUser());
     }
     // [END on_start_check_user]
-    private void createAccount(String email, String password) {
+    private void createAccount(final String email, final String password) {
         Log.d(TAG, "createAccount:" + email);
         if (!validateForm()) {
             return;
         }
-
         showProgressBar();
 
         // [START create_user_with_email]
@@ -76,14 +65,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(Login.this, "Sucesso no Cadastro.",
-                                    Toast.LENGTH_SHORT).show();
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            signIn(email,password);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, "Falha no Cadastro.",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "createUserWithEmail:failure");
+                            Toast.makeText(Login.this, "Falha no Cadastro",
+                                    Toast.LENGTH_LONG).show();
                             updateUI(null);
                         }
 
@@ -111,13 +101,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
+                            Toast.makeText(Login.this,  "Sucesso no Acesso.",
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+                            Intent intent = new Intent(Login.this, InicioLogado.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Login.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this,  "Falha no Acesso.",
+                                    Toast.LENGTH_LONG).show();
                             updateUI(null);
                             // [START_EXCLUDE]
                             //checkForMultiFactorFailure(task.getException());
@@ -213,7 +207,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     private void updateUI(FirebaseUser user) {
         hideProgressBar();
-        if (user != null) {
+
+        if (user == null) {
+            //Toast.makeText(Login.this,"Usuário desconhecido",
+            //        Toast.LENGTH_SHORT).show();
             //mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
             //        user.getEmail(), user.isEmailVerified()));
             //mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
@@ -222,15 +219,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             //mBinding.editTextPassword.setVisibility(View.GONE);
             //mBinding.signedInButtons.setVisibility(View.VISIBLE);
 
-            if (user.isEmailVerified()) {
+            //if (user.isEmailVerified()) {
                 //mBinding.verifyEmailButton.setVisibility(View.GONE);
-            } else {
+            //} else {
                 //mBinding.verifyEmailButton.setVisibility(View.VISIBLE);
-            }
+            //}
         } else {
+            //Toast.makeText(Login.this,"Usuário Logado",
+              //      Toast.LENGTH_SHORT).show();
+
             //mBinding.status.setText(R.string.signed_out);
            // mBinding.detail.setText(null);
-
             //mBinding.emailPasswordButtons.setVisibility(View.VISIBLE);
             //mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
            // mBinding.signedInButtons.setVisibility(View.GONE);
@@ -272,14 +271,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
 
     private void showProgressBar(){
-        if(progressBarEntrar != null){
-            progressBarEntrar.setVisibility(View.VISIBLE);
+        if(mBinding.progressBarEntrar != null){
+            mBinding.progressBarEntrar.setVisibility(View.VISIBLE);
         }
     }
 
     private void hideProgressBar(){
-        if(progressBarEntrar != null){
-            progressBarEntrar.setVisibility(View.INVISIBLE);
+        if(mBinding.progressBarEntrar != null){
+            mBinding.progressBarEntrar.setVisibility(View.INVISIBLE);
         }
     }
 

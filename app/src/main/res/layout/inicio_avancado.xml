@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/bg2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/ic_bg_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewLogoTexto2" />
+
+    <View
+        android:id="@+id/vector_plus"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_plus"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toStartOf="@+id/bg2"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/vector_bar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toEndOf="@+id/vector_plus"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <View
+        android:id="@+id/vector_map"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_map"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toEndOf="@+id/vector_bar"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/vector_files"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_files"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toEndOf="@+id/vector_map"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <View
+        android:id="@+id/vector_level"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_level"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toEndOf="@+id/vector_files"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <View
+        android:id="@+id/vector_sent"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/ic_vector_sent"
+        app:layout_constraintBottom_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toEndOf="@+id/vector_level"
+        app:layout_constraintTop_toTopOf="@+id/bg2"
+        app:layout_constraintVertical_bias="0.875" />
+
+    <ImageView
+        android:id="@+id/imageViewLogoTexto2"
+        android:layout_width="149dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/imagem_logo_texto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_texto_trans" />
+
+    <TextView
+        android:id="@+id/textViewSair2"
+        android:layout_width="47dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Sair"
+        android:textAlignment="center"
+        android:textAppearance="@style/entrar"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

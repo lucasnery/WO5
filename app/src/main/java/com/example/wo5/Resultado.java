@@ -6,14 +6,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Inicio_Logado extends AppCompatActivity {
+public class Resultado extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inicio_logado);
+        setContentView(R.layout.resultado);
+
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.graphFragment, new Fragment_());
+        ft.replace(R.id.resultado_fragment, new thpTesteFragment());
         ft.commit();
     }
+
+
 }

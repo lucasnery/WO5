@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +22,13 @@ public class MainActivity extends AppCompatActivity {
     EditText mainEditTextSingleton;
     Button buttonSignalStrenght;
     TextView textViewEntrar;
+    Button button_prim;
     String singleton;
     SignalStrenght ss;
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
+
     private FirebaseAuth mAuth;
+    private static final String TAG = "Login";
 
 
     @Override
@@ -34,12 +38,11 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         buttonSignalStrenght = findViewById(R.id.button_prim);
         textViewEntrar = findViewById(R.id.textViewEntrar);
+        button_prim = findViewById(R.id.button_prim);
         //DataModel.getInstance().setContext(MainActivity.this);
         //mainEditTextSingleton = findViewById(R.id.mainEditTextSingleton);
         //DataModel.getInstance().setSingleton("Singleton funcionado");
         requestFineCoarseLocation();
-
-
         //singleton = DataModel.getInstance().getSingleton();
         //mainEditTextSingleton.setText(singleton);
         //ss = new SignalStrenght();
@@ -55,27 +58,41 @@ public class MainActivity extends AppCompatActivity {
         textViewEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Login.class);
+                if(mAuth.getCurrentUser() == null){
+                    Intent intent = new Intent(MainActivity.this,Login.class);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(MainActivity.this, InicioLogado.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        button_prim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Resultado.class);
                 startActivity(intent);
             }
         });
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        //updateUI(mAuth.getCurrentUser());
     }
 
-    private void updateUI(FirebaseUser currentUser) {
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
+        //updateUI(mAuth.getCurrentUser());
     }
 
     private void requestFineCoarseLocation(){
@@ -103,5 +120,41 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void updateUI(FirebaseUser user) {
+
+
+        if (user != null) {
+            //textViewEntrar.setText("Sair");
+            Log.d(TAG, mAuth.getCurrentUser().getEmail());
+            Toast.makeText(MainActivity.this,"Usuário Logado",
+                    Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, InicioLogado.class);
+            startActivity(intent);
+
+            //mBinding.status.setText(getString(R.string.emailpassword_status_fmt,
+            //        user.getEmail(), user.isEmailVerified()));
+            //mBinding.detail.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+
+            //mBinding.emailPasswordButtons.setVisibility(View.GONE);
+            //mBinding.editTextPassword.setVisibility(View.GONE);
+            //mBinding.signedInButtons.setVisibility(View.VISIBLE);
+
+            if (user.isEmailVerified()) {
+                //mBinding.verifyEmailButton.setVisibility(View.GONE);
+            } else {
+                //mBinding.verifyEmailButton.setVisibility(View.VISIBLE);
+            }
+        } else {
+
+            //mBinding.status.setText(R.string.signed_out);
+            // mBinding.detail.setText(null);
+
+            //mBinding.emailPasswordButtons.setVisibility(View.VISIBLE);
+            //mBinding.emailPasswordFields.setVisibility(View.VISIBLE);
+            // mBinding.signedInButtons.setVisibility(View.GONE);
+        }
+    }
+
 
 }
