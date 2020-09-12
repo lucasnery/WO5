@@ -6,6 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progressBarTesting"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:indeterminateTint="#37749F"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/textViewAvaliacaoResumo"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/textViewAvaliacaoResumo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAvaliacaoResumo" />
+
     <TextView
         android:id="@+id/textViewEntrarResultado"
         android:layout_width="47dp"

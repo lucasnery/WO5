@@ -18,6 +18,8 @@ public class DataModel {
     private ArrayList<Measurement> measList = new ArrayList<>();
     private Double resultThpDl;
     private Double resultThpUl;
+
+
     private static DataModel instance = null;
 
     //Constructors

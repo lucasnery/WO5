@@ -86,6 +86,7 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onResume() {
+        handler.removeCallbacksAndMessages(runnable);
         super.onResume();
 
 
@@ -94,11 +95,13 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        handler.removeCallbacksAndMessages(runnable);
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        handler.removeCallbacksAndMessages(runnable);
 
 
     }
@@ -134,8 +137,8 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
                 handler.postDelayed(this, 1000);
                 textViewIntens.setText(String.valueOf(rsrp));
                 textViewQual.setText(String.valueOf(rsrq));
-                Double thpDlResult = 0.0;
-                Double thpUlResult = 0.0;
+                Double thpDlResult = DataModel.getInstance().getResultThpDl();
+                Double thpUlResult = DataModel.getInstance().getResultThpUl();
 
                 if(thpDlResult == null){
                     textViewThpDown.setText("?");
@@ -157,12 +160,9 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
 
               //RSRQ
                 if(rsrq > -6){
-                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq);
-                    textViewL11.setBackgroundColor(Color.parseColor("#37749F"));
-                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq + " blue");
+                     textViewL11.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
                     textViewL11.setBackgroundColor(Color.parseColor("#F6F6F6"));
-                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq + " gray");
                 }
                 if(rsrq > -8){
                     textViewL10.setBackgroundColor(Color.parseColor("#37749F"));
