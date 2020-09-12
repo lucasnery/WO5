@@ -19,7 +19,7 @@ public class SpeedTestTaskDl extends AsyncTask<Void, Void, String>{
     protected String doInBackground(Void... params) {
 
         final SpeedTestSocket speedTestSocket = new SpeedTestSocket();
-        speedTestSocket.setSocketTimeout(5000);
+        speedTestSocket.setSocketTimeout(4500);
 
 
         // add a listener to wait for speedtest completion and progress

@@ -25,6 +25,26 @@ public class Resultado extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultado);
+        createView();
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        createView();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Resultado.this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void createView(){
         buttonHistorico = findViewById(R.id.buttonHistorico);
         buttonNovoTeste = findViewById(R.id.buttoNovoTeste);
         textViewAvaliacao = findViewById(R.id.textViewAvaliacao);
@@ -49,20 +69,14 @@ public class Resultado extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Resultado.this,SignalStrenght.class);
                 startActivity(intent);
+                Intent intent1 = new Intent(Resultado.this,Resultado.class);
+                startActivity(intent1);
             }
         });
         executeHandler();
         //textViewEntrarResultado = findViewById(R.id.textViewEntrarResultado);
         //textViewResultado = findViewById(R.id.textViewResultado);
 
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(Resultado.this,MainActivity.class);
-        startActivity(intent);
     }
 
 

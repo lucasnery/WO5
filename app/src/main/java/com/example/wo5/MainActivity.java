@@ -72,14 +72,15 @@ public class MainActivity extends AppCompatActivity {
         button_prim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this,SignalStrenght.class);
                 startActivity(intent);
+                //Intent intent1 = new Intent(MainActivity.this,Resultado.class);
+                //startActivity(intent1);
             }
         });
 
     }
-
-
 
     @Override
     protected void onStart() {

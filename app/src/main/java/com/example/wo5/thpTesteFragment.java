@@ -1,5 +1,8 @@
 package com.example.wo5;
 
+import android.graphics.Color;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,15 +13,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.Random;
+
+import static com.example.wo5.R.drawable.level_bar;
 
 public class thpTesteFragment extends Fragment implements View.OnClickListener {
 
 
-    TextView textViewL1, textViewL2, textViewL3, textViewL4, textViewL5, textViewL6, textViewL7, textViewL8, textViewL9, textViewL10, textViewL11;
+
+    TextView textViewL2, textViewL3, textViewL4, textViewL5, textViewL6, textViewL7, textViewL8, textViewL9, textViewL10, textViewL11;
     TextView textViewR1, textViewR2, textViewR3, textViewR4, textViewR5, textViewR6, textViewR7, textViewR8, textViewR9, textViewR10, textViewR11;
     TextView textViewLatencia;
     TextView textViewThpDown;
@@ -33,6 +39,8 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
     private int count = 0;
     Measurement meas;
 
+    TextView textViewLeft1;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,7 +51,13 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textViewL1 = view.findViewById(R.id.textViewL1);
+        textViewLatencia = view.findViewById(R.id.textViewLatencia);
+        textViewThpDown = view.findViewById(R.id.textViewThpDown);
+        textViewThpUl = view.findViewById(R.id.textViewThpUp);
+        textViewQual = view.findViewById(R.id.textViewQual);
+        textViewIntens = view.findViewById(R.id.textViewIntens);
+        textViewCenterV = view.findViewById(R.id.textViewCenterV);
+        textViewLeft1 = view.findViewById(R.id.textViewLeft1);
         textViewL2 = view.findViewById(R.id.textViewL2);
         textViewL3 = view.findViewById(R.id.textViewL3);
         textViewL4 = view.findViewById(R.id.textViewL4);
@@ -65,44 +79,35 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
         textViewR9 = view.findViewById(R.id.textViewR9);
         textViewR10 = view.findViewById(R.id.textViewR10);
         textViewR11 = view.findViewById(R.id.textViewR11);
-        textViewLatencia = view.findViewById(R.id.textViewLatencia);
-        textViewThpDown = view.findViewById(R.id.textViewThpDown);
-        textViewThpUl = view.findViewById(R.id.textViewThpUp);
-        textViewQual = view.findViewById(R.id.textViewQual);
-        textViewIntens = view.findViewById(R.id.textViewIntens);
-        textViewCenterV = view.findViewById(R.id.textViewCenterV);
-
 
         executeHandler();
-
-
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        handler.removeCallbacks(runnable);
-        executeHandler();
-
 
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     public void onStop() {
         super.onStop();
-        handler.removeCallbacks(runnable);
+
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        handler.removeCallbacksAndMessages(runnable);
-        handler.postDelayed(runnable, 10000);
+        //handler.removeCallbacksAndMessages(runnable);
+
     }
 
 
@@ -118,17 +123,20 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
         runnable = new Runnable() {
             @Override
             public void run() {
-                meas = DataModel.getInstance().getMeasurement();
-                int rsrp = meas.getCellSignal().getRsrp();
-                int rsrq = meas.getCellSignal().getRsrq();
+                //meas = DataModel.getInstance().getMeasurement();
+
+                int rsrp = DataModel.getInstance().getMeasurementCurrent().getCellSignal().getRsrp();
+                int rsrq = DataModel.getInstance().getMeasurementCurrent().getCellSignal().getRsrq();
+                Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq);
                 //int max = -40;
                 //int min = -125;
                 //int value = random.nextInt(max - min)+min;
-                handler.postDelayed(this, 500);
+                handler.postDelayed(this, 1000);
                 textViewIntens.setText(String.valueOf(rsrp));
                 textViewQual.setText(String.valueOf(rsrq));
-                Double thpDlResult = DataModel.getInstance().getResultThpDl();
-                Double thpUlResult = DataModel.getInstance().getResultThpUl();
+                Double thpDlResult = 0.0;
+                Double thpUlResult = 0.0;
+
                 if(thpDlResult == null){
                     textViewThpDown.setText("?");
                 }
@@ -142,122 +150,126 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
                 else {
                     textViewThpUl.setText(String.format("%.2f", thpUlResult));
                 }
+                //textViewL1.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
 
 
                 //textViewThpDown.setText(String.valueOf(value));
 
-                //RSRQ
+              //RSRQ
                 if(rsrq > -6){
-                    textViewL11.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq);
+                    textViewL11.setBackgroundColor(Color.parseColor("#37749F"));
+                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq + " blue");
                 }else {
-                    textViewL11.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL11.setBackgroundColor(Color.parseColor("#F6F6F6"));
+                    Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq + " gray");
                 }
                 if(rsrq > -8){
-                    textViewL10.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL10.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL10.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL10.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -10){
-                    textViewL9.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL9.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL9.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL9.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -12){
-                    textViewL8.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL8.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL8.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL8.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -14){
-                    textViewL7.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL7.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL7.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL7.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -16){
-                    textViewL6.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL6.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL6.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL6.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -18){
-                    textViewL5.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL5.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL5.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL5.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -20){
-                    textViewL4.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL4.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL4.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL4.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -22){
-                    textViewL3.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL3.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL3.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL3.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -24){
-                    textViewL2.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewL2.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL2.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewL2.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrq > -26){
-                    textViewL1.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewLeft1.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewL1.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewLeft1.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
 
                 //RSRP
                 if(rsrp > -80){
-                    textViewR11.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR11.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR11.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR11.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -90){
-                    textViewR10.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR10.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR10.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR10.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -100){
-                    textViewR9.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR9.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR9.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR9.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -102){
-                    textViewR8.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR8.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR8.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR8.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -105){
-                    textViewR7.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR7.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR7.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR7.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -108){
-                    textViewR6.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR6.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR6.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR6.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -110){
-                    textViewR5.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR5.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR5.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR5.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -112){
-                    textViewR4.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR4.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR4.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR4.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -114){
-                    textViewR3.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR3.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR3.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR3.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -116){
-                    textViewR2.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR2.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR2.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR2.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
                 if(rsrp > -120){
-                    textViewR1.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
+                    textViewR1.setBackgroundColor(Color.parseColor("#37749F"));
                 }else {
-                    textViewR1.setBackgroundColor(getResources().getColor(R.color.greycolor,null));
+                    textViewR1.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
 
                 Log.d(TAG, "RSRP" + String.valueOf(rsrp) + " RSRQ " + String.valueOf(rsrq));

@@ -14,6 +14,9 @@ public class Measurement {
         this.location = location;
 
     }
+    public Measurement(){
+
+    }
 
 
     public CellSignal getCellSignal() {

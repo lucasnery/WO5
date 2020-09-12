@@ -67,41 +67,47 @@ public class SignalStrenght extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signal_strenght);
-        ss_button_ThpT = findViewById(R.id.ss_button_ThpT);
-        graph1 = findViewById(R.id.graph1);
-        mSeries = new LineGraphSeries<>();
-        graph1.addSeries(mSeries);
-        graph1.getViewport().setXAxisBoundsManual(true);
-        graph1.getViewport().setMinX(0);
-        graph1.getViewport().setMaxX(80);
-        graph1.getViewport().setScrollable(true);
+        //setContentView(R.layout.signal_strenght);
+//        ss_button_ThpT = findViewById(R.id.ss_button_ThpT);
+//        graph1 = findViewById(R.id.graph1);
+//        mSeries = new LineGraphSeries<>();
+//        graph1.addSeries(mSeries);
+//        graph1.getViewport().setXAxisBoundsManual(true);
+//        graph1.getViewport().setMinX(0);
+//        graph1.getViewport().setMaxX(80);
+//        graph1.getViewport().setScrollable(true);
 
         new SpeedTestTaskDl().execute();
         // custom label formatter to show currency "EUR"
-        graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if (isValueX) {
-                    // show normal x values
-                    return super.formatLabel(value, isValueX);
-                } else {
-                    // show currency for y values
-                    return "|  -" + super.formatLabel(value, isValueX);
-                }
-            }
-        });
+//        graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+//            @Override
+//            public String formatLabel(double value, boolean isValueX) {
+//                if (isValueX) {
+//                    // show normal x values
+//                    return super.formatLabel(value, isValueX);
+//                } else {
+//                    // show currency for y values
+//                    return "|  -" + super.formatLabel(value, isValueX);
+//                }
+//            }
+//        });
 
 
-        ss_button_ThpT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SpeedTestTaskDl().execute();
+//        ss_button_ThpT.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                new SpeedTestTaskDl().execute();
+//
+//
+//             }
+    //});
+        getCurrentLocation();
 
+        SignalStrengthsListener ss = new SignalStrengthsListener();
+        ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
 
-             }
-        });
-        executeTest();
+        Intent intent = new Intent(SignalStrenght.this,Resultado.class);
+        startActivity(intent);
 
     }
 
@@ -126,6 +132,7 @@ public class SignalStrenght extends AppCompatActivity {
     @Override
         public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
+            Measurement measurement = new Measurement();
             tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
             cellInfoList = tm.getAllCellInfo();
            //Log.d(TAG, String.valueOf(tm.getAllCellInfo()));
@@ -148,11 +155,11 @@ public class SignalStrenght extends AppCompatActivity {
                         //Cell Signal Strength
                         int rsrp = ((CellInfoLte) cellInfo).getCellSignalStrength().getRsrp();
                         //Add data to graphic
-                        double rsrpD = rsrp;
-                        graph2LastXValue += 1d;
-                        //graph1.getViewport().setScrollable(true);
-                        mSeries.appendData(new DataPoint(graph2LastXValue,rsrpD),true,200);
-                        graph1.setTitle("teste");
+//                        double rsrpD = rsrp;
+//                        graph2LastXValue += 1d;
+//                        //graph1.getViewport().setScrollable(true);
+//                        mSeries.appendData(new DataPoint(graph2LastXValue,rsrpD),true,200);
+//                        graph1.setTitle("teste");
                         int rsrq = ((CellInfoLte) cellInfo).getCellSignalStrength().getRsrq();
                         int snr = ((CellInfoLte) cellInfo).getCellSignalStrength().getRssnr();
                         int ta = ((CellInfoLte) cellInfo).getCellSignalStrength().getTimingAdvance();
@@ -181,22 +188,16 @@ public class SignalStrenght extends AppCompatActivity {
                             Log.w(TAG,e.getMessage());
                         }
 
+
                         cellIdentity = new CellIdentity(cellPci,ci,enobebId,tac,earfcn,operatorLong,operatorAlphaShort,mcc,mnc,detail);
+                        measurement.setCellIdentity(cellIdentity);
                         cellSignal = new CellSignal(rsrp,rsrq,snr,ta,asu,cqi,dbm,level,rssi);
+                        measurement.setCellSignal(cellSignal);
                         location = new Location(longitude,latitude,altitude);
+                        measurement.setLocation(location);
                         dateTime = new DateTime(time,date);
-                        boolean check = DataModel.getInstance().addMeasList(new Measurement(cellSignal,cellIdentity,dateTime,location));
-                        Log.d(TAG + "check ",String.valueOf(check) +
-                                "RSRP: " + DataModel.getInstance().getMeasurement().getCellSignal().getRsrp() +
-                                "RSRP: " + DataModel.getInstance().getMeasurement().getCellSignal().getRsrq()
-                        );
-                        try{
-                            meas = new Measurement(cellSignal,cellIdentity,dateTime,location);
-                        }catch (Exception e){
-                            Log.w(TAG,e.getMessage());
-                        }
-
-
+                        measurement.setDateTime(dateTime);
+                        DataModel.getInstance().setMeasurementCurrent(measurement);
 
                     //Cell no registered is neighbor
                     }else{

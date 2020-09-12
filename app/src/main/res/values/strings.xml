@@ -34,4 +34,5 @@
     <string name="_15">15</string>
     <string name="velocimetro">Velocimetro</string>
     <string name="excelente">Excelente</string>
+    <string name="Indefinido">-</string>
 </resources>

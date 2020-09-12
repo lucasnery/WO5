@@ -8,12 +8,53 @@ import java.util.ArrayList;
 
 public class DataModel {
 
+    private FirebaseAuth mAuth;
+    private String singleton;
+    private Context context;
     private final String TAG = "DataModel";
     private FirebaseUser user;
     private Measurement measurement;
+    private Measurement measurementCurrent;
     private ArrayList<Measurement> measList = new ArrayList<>();
     private Double resultThpDl;
     private Double resultThpUl;
+    private static DataModel instance = null;
+
+    //Constructors
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+
+    public static DataModel getInstance(){
+        if(instance == null)
+            instance = new DataModel();
+        return instance;
+    }
+
+    //Methods
+    public void signOut(){
+        mAuth.signOut();
+    }
+
+    public boolean addMeasList(Measurement measurement){
+        measList.add(measurement);
+        return true;
+    }
+
+    //Getter and setter
+    public Measurement getMeasurementCurrent() {
+        return measurementCurrent;
+    }
+
+    public void setMeasurementCurrent(Measurement measurementCurrent) {
+        Log.d(TAG + " setMeasurementCurrent", "Ok");
+        this.measurementCurrent = measurementCurrent;
+    }
 
     public Double getResultThpDl() {
         return resultThpDl;
@@ -33,15 +74,9 @@ public class DataModel {
 
     public Measurement getMeasurement() {
 
-        measurement = measList.get(measList.size()-1);
-        Log.d(TAG,"level: " + String.valueOf(measList.get(measList.size()-1).getCellSignal().getRsrp()));
+        //measurement = measList.get(measList.size()-1);
+        //Log.d(TAG,"level: " + String.valueOf(measList.get(measList.size()-1).getCellSignal().getRsrp()));
         return measurement;
-    }
-
-
-    public boolean addMeasList(Measurement measurement){
-        measList.add(measurement);
-        return true;
     }
 
     public FirebaseAuth getmAuth() {
@@ -51,10 +86,6 @@ public class DataModel {
     public void setmAuth(FirebaseAuth mAuth) {
         this.mAuth = mAuth;
     }
-
-    private FirebaseAuth mAuth;
-    private String singleton;
-    private Context context;
 
     public FirebaseUser getUser() {
         return user;
@@ -66,28 +97,8 @@ public class DataModel {
 
 
 
-    private static DataModel instance = null;
 
 
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-
-    public static DataModel getInstance(){
-        if(instance == null)
-            instance = new DataModel();
-        return instance;
-    }
-
-    public void signOut(){
-        mAuth.signOut();
-    }
 
     public String getSingleton() {
         return singleton;

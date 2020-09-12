@@ -156,7 +156,7 @@
         app:layout_constraintStart_toStartOf="@+id/viewRight" />
 
     <TextView
-        android:id="@+id/textViewL1"
+        android:id="@+id/textViewLeft1"
         android:layout_width="0dp"
         android:layout_height="12dp"
         android:layout_marginStart="4dp"
@@ -173,7 +173,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewL1"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLeft1"
         app:layout_constraintEnd_toEndOf="@+id/viewLeft"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/viewLeft" />
@@ -304,7 +304,7 @@
         android:layout_width="72dp"
         android:layout_height="24dp"
         android:background="#F6F6F6"
-        android:text="@string/_000_00"
+        android:text="@string/Indefinido"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
@@ -321,7 +321,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/inter_semi_bold"
-        android:text="@string/_12"
+        android:text="@string/Indefinido"
         android:textAlignment="center"
         android:textColor="#001638"
         android:textSize="30sp"
@@ -372,7 +372,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/inter_semi_bold"
-        android:text="@string/_98"
+        android:text="@string/Indefinido"
         android:textAlignment="center"
         android:textColor="#001638"
         android:textSize="30sp"
@@ -400,7 +400,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
         android:fontFamily="@font/inter_semi_bold"
-        android:text="@string/_15"
+        android:text="@string/Indefinido"
         android:textAlignment="center"
         android:textColor="#001638"
         android:textSize="30sp"
