@@ -77,6 +77,7 @@ public class SignalStrenght extends AppCompatActivity {
 //        graph1.getViewport().setMaxX(80);
 //        graph1.getViewport().setScrollable(true);
 
+
         new SpeedTestTaskDl().execute();
         // custom label formatter to show currency "EUR"
 //        graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -111,10 +112,24 @@ public class SignalStrenght extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
+
         //executeTest();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        DataModel.getInstance().setResultThpDl(null);
+        DataModel.getInstance().setResultThpUl(null);
     }
 
     private void executeTest(){

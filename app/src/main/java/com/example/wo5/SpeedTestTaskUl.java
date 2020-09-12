@@ -28,6 +28,8 @@ public class SpeedTestTaskUl extends AsyncTask<Void, Void, String> {
                 Log.v("speedtestUL", "[COMPLETED] rate in bit/s   : " + report.getTransferRateBit());
                 Log.v("speedtestUL", "[COMPLETED] rate in Mbit/s   : " + String.format("%.2f", mbit));
                 DataModel.getInstance().setResultThpUl(mbit);
+                DataModel.getInstance().thpTest();
+
             }
 
             @Override

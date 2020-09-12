@@ -86,7 +86,7 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onResume() {
-        handler.removeCallbacksAndMessages(runnable);
+        //handler.removeCallbacksAndMessages(runnable);
         super.onResume();
 
 
@@ -95,13 +95,13 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        handler.removeCallbacksAndMessages(runnable);
+        //handler.removeCallbacksAndMessages(runnable);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        handler.removeCallbacksAndMessages(runnable);
+        //handler.removeCallbacksAndMessages(runnable);
 
 
     }
@@ -130,14 +130,11 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
 
                 int rsrp = DataModel.getInstance().getMeasurementCurrent().getCellSignal().getRsrp();
                 int rsrq = DataModel.getInstance().getMeasurementCurrent().getCellSignal().getRsrq();
-                Log.d(TAG, "RSRP " + rsrp + " RSRQ "+ rsrq);
-                //int max = -40;
-                //int min = -125;
-                //int value = random.nextInt(max - min)+min;
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(runnable, 1000);
                 textViewIntens.setText(String.valueOf(rsrp));
                 textViewQual.setText(String.valueOf(rsrq));
                 Double thpDlResult = DataModel.getInstance().getResultThpDl();
+                Log.d(TAG + "thpDlResult", String.valueOf(thpDlResult));
                 Double thpUlResult = DataModel.getInstance().getResultThpUl();
 
                 if(thpDlResult == null){
@@ -149,9 +146,11 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
                 if(thpUlResult == null){
                     textViewThpUl.setText("?");
 
+
                 }
                 else {
                     textViewThpUl.setText(String.format("%.2f", thpUlResult));
+
                 }
                 //textViewL1.setBackgroundColor(getResources().getColor(R.color.bluecolor,null));
 
@@ -272,7 +271,6 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
                     textViewR1.setBackgroundColor(Color.parseColor("#F6F6F6"));
                 }
 
-                Log.d(TAG, "RSRP" + String.valueOf(rsrp) + " RSRQ " + String.valueOf(rsrq));
             }
         };
         handler.postDelayed(runnable, 1000);

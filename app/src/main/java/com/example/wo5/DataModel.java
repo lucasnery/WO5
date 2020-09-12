@@ -16,8 +16,10 @@ public class DataModel {
     private Measurement measurement;
     private Measurement measurementCurrent;
     private ArrayList<Measurement> measList = new ArrayList<>();
+    private ArrayList<TesteThp> testThpList = new ArrayList<>();
     private Double resultThpDl;
     private Double resultThpUl;
+    private TesteThp testeThp;
 
 
     private static DataModel instance = null;
@@ -39,6 +41,13 @@ public class DataModel {
     }
 
     //Methods
+    public void thpTest() {
+        TesteThp testeThp = new TesteThp(resultThpDl,resultThpUl,measurementCurrent);
+        testThpList.add(testeThp);
+        Log.d(TAG,testThpList.toString());
+
+    }
+
     public void signOut(){
         mAuth.signOut();
     }
@@ -59,11 +68,11 @@ public class DataModel {
     }
 
     public Double getResultThpDl() {
-        return resultThpDl;
+        return this.resultThpDl;
     }
 
     public Double getResultThpUl() {
-        return resultThpUl;
+        return this.resultThpUl;
     }
 
     public void setResultThpDl(Double resultThpDl) {
@@ -71,7 +80,9 @@ public class DataModel {
     }
 
     public void setResultThpUl(Double resultThpUl) {
+
         this.resultThpUl = resultThpUl;
+
     }
 
     public Measurement getMeasurement() {
@@ -109,5 +120,6 @@ public class DataModel {
     public void setSingleton(String singleton) {
         this.singleton = singleton;
     }
+
 
 }
