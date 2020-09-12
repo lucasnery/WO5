@@ -3,6 +3,7 @@ package com.example.wo5;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -50,16 +51,25 @@ public class SignalStrenght extends AppCompatActivity {
     private BarGraphSeries<DataPoint> barGraphSeries;
     private double graph2LastXValue = 0d;
 
+    private CellIdentity cellIdentity;
+    private CellSignal cellSignal;
+    private String longitude;
+    private String latitude;
+    private String altitude;
+    private Location location;
+    private String time;
+    private String date;
+    private DateTime dateTime;
+    private Measurement meas;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signal_strenght);
-
         ss_button_ThpT = findViewById(R.id.ss_button_ThpT);
-
         graph1 = findViewById(R.id.graph1);
-
         mSeries = new LineGraphSeries<>();
         graph1.addSeries(mSeries);
         graph1.getViewport().setXAxisBoundsManual(true);
@@ -67,7 +77,7 @@ public class SignalStrenght extends AppCompatActivity {
         graph1.getViewport().setMaxX(80);
         graph1.getViewport().setScrollable(true);
 
-
+        new SpeedTestTaskDl().execute();
         // custom label formatter to show currency "EUR"
         graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
@@ -83,13 +93,6 @@ public class SignalStrenght extends AppCompatActivity {
         });
 
 
-
-
-        getCurrentLocation();
-
-        SignalStrengthsListener ss = new SignalStrengthsListener();
-        ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
-
         ss_button_ThpT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,6 +101,24 @@ public class SignalStrenght extends AppCompatActivity {
 
              }
         });
+        executeTest();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //executeTest();
+    }
+
+    private void executeTest(){
+        getCurrentLocation();
+
+        SignalStrengthsListener ss = new SignalStrengthsListener();
+        ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
+
+        Intent intent = new Intent(SignalStrenght.this,Resultado.class);
+        startActivity(intent);
     }
 
     protected class SignalStrengthsListener extends PhoneStateListener{
@@ -106,14 +127,8 @@ public class SignalStrenght extends AppCompatActivity {
         public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
             tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-
-            String time = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(System.currentTimeMillis());
-            String date = DateFormat.getDateInstance(DateFormat.SHORT).format(System.currentTimeMillis());
-
             cellInfoList = tm.getAllCellInfo();
-
-
-            //Log.d(TAG, String.valueOf(tm.getAllCellInfo()));
+           //Log.d(TAG, String.valueOf(tm.getAllCellInfo()));
             for(CellInfo cellInfo : cellInfoList){
                 //Information about LTE network
                 if(cellInfo instanceof CellInfoLte){
@@ -155,6 +170,34 @@ public class SignalStrenght extends AppCompatActivity {
                                 " " + earfcn + " " +
                                 operatorAlphaShort + " " + mcc + " " + mnc +  " " + rsrp + " " +
                                 rsrq + " " + snr  + " " + ta + " " + asu + " " + cqi + " " + dbm + " " + rssi);
+                        try {
+                            getCurrentLocation();
+                        }catch (Exception e){
+                            Log.w(TAG,e.getMessage());
+                        }
+                        try {
+                            getDateTime();
+                        }catch (Exception e){
+                            Log.w(TAG,e.getMessage());
+                        }
+
+                        cellIdentity = new CellIdentity(cellPci,ci,enobebId,tac,earfcn,operatorLong,operatorAlphaShort,mcc,mnc,detail);
+                        cellSignal = new CellSignal(rsrp,rsrq,snr,ta,asu,cqi,dbm,level,rssi);
+                        location = new Location(longitude,latitude,altitude);
+                        dateTime = new DateTime(time,date);
+                        boolean check = DataModel.getInstance().addMeasList(new Measurement(cellSignal,cellIdentity,dateTime,location));
+                        Log.d(TAG + "check ",String.valueOf(check) +
+                                "RSRP: " + DataModel.getInstance().getMeasurement().getCellSignal().getRsrp() +
+                                "RSRP: " + DataModel.getInstance().getMeasurement().getCellSignal().getRsrq()
+                        );
+                        try{
+                            meas = new Measurement(cellSignal,cellIdentity,dateTime,location);
+                        }catch (Exception e){
+                            Log.w(TAG,e.getMessage());
+                        }
+
+
+
                     //Cell no registered is neighbor
                     }else{
                         int cellPci = ((CellInfoLte) cellInfo).getCellIdentity().getPci();
@@ -223,9 +266,9 @@ public class SignalStrenght extends AppCompatActivity {
         mlocationListener = new LocationListener() {
             @Override
             public void onLocationChanged(android.location.Location location) {
-                String longitude = String.valueOf(location.getLongitude());
-                String latitude = String.valueOf(location.getLatitude());
-                String altitude = String.valueOf(location.getAltitude());
+                longitude = String.valueOf(location.getLongitude());
+                latitude = String.valueOf(location.getLatitude());
+                altitude = String.valueOf(location.getAltitude());
                 Log.d("Position", "Latitude: " + latitude + " Longitude: " + longitude + " Altitude: " + altitude);
             }
 
@@ -242,5 +285,10 @@ public class SignalStrenght extends AppCompatActivity {
             }
         };
         mlocationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, mlocationListener);
+    }
+
+    public void getDateTime(){
+        this.time = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(System.currentTimeMillis());
+        this.date = DateFormat.getDateInstance(DateFormat.SHORT).format(System.currentTimeMillis());
     }
 }

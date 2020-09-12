@@ -23,7 +23,11 @@ public class SpeedTestTaskUl extends AsyncTask<Void, Void, String> {
             @Override
             public void onCompletion(SpeedTestReport report) {
                 // called when download/upload is finished
+                BigDecimal bit = report.getTransferRateBit();
+                double mbit = bit.doubleValue()/1000000.0;
                 Log.v("speedtestUL", "[COMPLETED] rate in bit/s   : " + report.getTransferRateBit());
+                Log.v("speedtestUL", "[COMPLETED] rate in Mbit/s   : " + String.format("%.2f", mbit));
+                DataModel.getInstance().setResultThpUl(mbit);
             }
 
             @Override

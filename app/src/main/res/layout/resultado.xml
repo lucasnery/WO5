@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewEntrar2"
+        android:id="@+id/textViewEntrarResultado"
         android:layout_width="47dp"
         android:layout_height="19dp"
         android:layout_marginEnd="16dp"
@@ -18,17 +18,15 @@
         app:layout_constraintTop_toTopOf="@+id/textViewResultado" />
 
     <FrameLayout
-        android:id="@+id/resultado_fragment"
+
+        android:id="@+id/result_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewResultado">
+        app:layout_constraintTop_toBottomOf="@+id/textViewResultado"></FrameLayout>
 
-
-    </FrameLayout>
 
     <TextView
         android:id="@+id/textViewResultado"
@@ -43,5 +41,67 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAvaliacaoResumo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/excelente"
+        android:textAlignment="center"
+        android:textColor="#001638"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_fragment" />
+
+    <TextView
+        android:id="@+id/textViewAvaliacao"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Sua conexão pode fornecer uma ótima experiência em todos os serviços de internet."
+        android:textAlignment="center"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAvaliacaoResumo" />
+
+    <Button
+        android:id="@+id/buttonHistorico"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/ic_button_prim"
+        android:fontFamily="@font/inter_semi_bold"
+        android:text="Histórico"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/buttoNovoTeste"
+        app:layout_constraintStart_toStartOf="@+id/textViewAvaliacao"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAvaliacao" />
+
+    <Button
+        android:id="@+id/buttoNovoTeste"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/ic_button_prim"
+        android:fontFamily="@font/inter_semi_bold"
+        android:text="Novo Teste"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewAvaliacao"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAvaliacao" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

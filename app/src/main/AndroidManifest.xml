@@ -30,6 +30,7 @@
         <activity android:name=".Resultado"></activity>
         <activity android:name=".InicioAvancado"></activity>
 
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

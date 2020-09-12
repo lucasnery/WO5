@@ -25,16 +25,16 @@ public class SpeedTestTaskDl extends AsyncTask<Void, Void, String>{
         // add a listener to wait for speedtest completion and progress
         speedTestSocket.addSpeedTestListener(new ISpeedTestListener() {
 
-
-
-
-
             @Override
             public void onCompletion(SpeedTestReport report) {
                 // called when download/upload is finished
                 long difference = System.currentTimeMillis() - startTime;
+                BigDecimal bit = report.getTransferRateBit();
+                double mbit = bit.doubleValue()/1000000.0;
                 Log.v("speedtestDL", "[COMPLETED] time   : " + difference);
                 Log.v("speedtestDL", "[COMPLETED] rate in bit/s   : " + report.getTransferRateBit());
+                Log.v("speedtestDL", "[COMPLETED] rate in Mbit/s   : " + String.format("%.2f", mbit));
+                DataModel.getInstance().setResultThpDl(mbit);
                 new SpeedTestTaskUl().execute();
             }
 
@@ -49,6 +49,7 @@ public class SpeedTestTaskDl extends AsyncTask<Void, Void, String>{
                     Log.v("speedtestDL", "[PROGRESS] progress : " + percent + "%");
                     Log.v("speedtestDL", "[PROGRESS] report time : " + report.getReportTime());
                     Log.v("speedtestDL", "[PROGRESS] rate in bit/s   : " + report.getTransferRateBit() + " rate in mbis/s " + String.format("%.2f", mbit));
+                    //DataModel.getInstance().addThpDl(mbit);
                 }
 
                 if(difference > speedTestSocket.getSocketTimeout()){

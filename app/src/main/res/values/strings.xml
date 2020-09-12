@@ -21,4 +21,17 @@
     <string name="digite_seu_nome">Nome:</string>
     <string name="imagem_logo_texto">Imagem logo texto</string>
     <string name="resultado">Resultado</string>
+    <string name="upload">Upload</string>
+    <string name="qualidade">Qualidade</string>
+    <string name="_000_00">000,00</string>
+    <string name="intensidade">Intensidade</string>
+    <string name="_12">12</string>
+    <string name="ms">ms</string>
+    <string name="lat_ncia">Latência</string>
+    <string name="_98">98</string>
+    <string name="mbps">Mbps</string>
+    <string name="download">Download</string>
+    <string name="_15">15</string>
+    <string name="velocimetro">Velocimetro</string>
+    <string name="excelente">Excelente</string>
 </resources>
