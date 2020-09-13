@@ -32,6 +32,7 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
     TextView textViewQual;
     TextView textViewIntens;
     TextView textViewCenterV;
+    TextView textViewOperadora;
     final Handler handler = new Handler();
     private Random random = new Random();
     final private String TAG = "thpTesteFragment";
@@ -79,6 +80,7 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
         textViewR9 = view.findViewById(R.id.textViewR9);
         textViewR10 = view.findViewById(R.id.textViewR10);
         textViewR11 = view.findViewById(R.id.textViewR11);
+        textViewOperadora = view.findViewById(R.id.textViewOperadora);
 
         executeHandler();
 
@@ -136,6 +138,7 @@ public class thpTesteFragment extends Fragment implements View.OnClickListener {
                 Double thpDlResult = DataModel.getInstance().getResultThpDl();
                 Log.d(TAG + "thpDlResult", String.valueOf(thpDlResult));
                 Double thpUlResult = DataModel.getInstance().getResultThpUl();
+                textViewOperadora.setText(DataModel.getInstance().getMeasurementCurrent().getCellIdentity().getOperatorLong());
 
                 if(thpDlResult == null){
                     textViewThpDown.setText("?");

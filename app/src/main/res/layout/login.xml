@@ -140,4 +140,22 @@
         app:layout_constraintStart_toStartOf="@+id/buttonCadastrar"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxReceber" />
 
+    <Button
+        android:id="@+id/buttonRecuperarSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_button_prim"
+        android:fontFamily="@font/inter_semi_bold"
+        android:text="Recuperar Senha"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

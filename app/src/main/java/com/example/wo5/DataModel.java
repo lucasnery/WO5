@@ -4,6 +4,11 @@ import android.content.Context;
 import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DataModel {
@@ -46,6 +51,29 @@ public class DataModel {
         testThpList.add(testeThp);
         Log.d(TAG,testThpList.toString());
 
+    }
+
+    public void saveLog(String text){
+        File logFile = new File("/data/data/com.example.wo5/Log/log.txt");
+        if(!logFile.exists()){
+            try {
+                logFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        try {
+            //BufferedWriter for performance, true to set append to file flag
+            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+            buf.append(text);
+            buf.newLine();
+            buf.close();
+        }
+        catch (IOException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void signOut(){
