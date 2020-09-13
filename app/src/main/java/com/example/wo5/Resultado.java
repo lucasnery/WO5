@@ -13,22 +13,51 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Resultado extends AppCompatActivity {
 
     Button buttonHistorico;
     Button buttonNovoTeste;
     TextView textViewAvaliacaoResumo;
     TextView textViewAvaliacao;
+    TextView textViewEntrarResultado;
     ProgressBar progressBarTesting;
     private Runnable runnableRes;
     Handler handlerRes = new Handler();
+    private final String TAG = "Resultado";
+    private FirebaseAuth mAuth;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultado);
+        String classname = getIntent().getStringExtra("SignalStreght");
+        textViewEntrarResultado = findViewById(R.id.textViewEntrarResultado);
+        mAuth = FirebaseAuth.getInstance();
         createView();
+        if(buttonHistorico != null){
+            buttonHistorico.setVisibility(View.INVISIBLE);
+        }
+
+        textViewEntrarResultado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mAuth.getCurrentUser() == null){
+                    Intent intent = new Intent(Resultado.this,Login.class);
+                    intent.putExtra(TAG, this.getClass().getName());
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(Resultado.this, InicioLogado.class);
+                    intent.putExtra(TAG, this.getClass().getName());
+                    startActivity(intent);
+                }
+            }
+        });
+
+
 
 
 
@@ -73,6 +102,7 @@ public class Resultado extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(Resultado.this,SignalStrenght.class);
+                intent.putExtra(TAG, this.getClass().getName());
                 startActivity(intent);
 
             }
@@ -139,7 +169,7 @@ public class Resultado extends AppCompatActivity {
                     }
 
                     if(buttonHistorico != null){
-                        buttonHistorico.setVisibility(View.VISIBLE);
+                        buttonHistorico.setVisibility(View.INVISIBLE);
                     }
                     if(buttonNovoTeste != null){
                         buttonNovoTeste.setVisibility(View.VISIBLE);

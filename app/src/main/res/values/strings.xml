@@ -35,4 +35,10 @@
     <string name="velocimetro">Velocimetro</string>
     <string name="excelente">Excelente</string>
     <string name="Indefinido">-</string>
+    <string name="sair">Sair</string>
+    <string name="antenna">Antenna</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="admin">Admin</string>
+    <string name="config">Config</string>
+    <string name="user">User</string>
 </resources>

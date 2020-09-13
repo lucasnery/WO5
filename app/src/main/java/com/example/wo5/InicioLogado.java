@@ -23,17 +23,23 @@ public class InicioLogado extends AppCompatActivity implements View.OnClickListe
         setContentView(mBinding.getRoot());
         mBinding.textViewSair.setOnClickListener(this);
         mBinding.vectorUser.setOnClickListener(this);
-        mBinding.vectorAntenna.setOnClickListener(this);
+        mBinding.vectorAntennaF.setOnClickListener(this);
         mBinding.vectorDashboard.setOnClickListener(this);
         mBinding.vectorAdmin.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.graphFragment, new Fragment_());
+        ft.replace(R.id.logadoFragment, new LogoFragment());
         ft.commit();
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(InicioLogado.this,MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onClick(View v) {
@@ -43,8 +49,11 @@ public class InicioLogado extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(InicioLogado.this,MainActivity.class);
             startActivity(intent);
         }else if(i == R.id.vector_user){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.logadoFragment, new PerfilFragment());
+            ft.commit();
 
-        }else if(i == R.id.vectorAntenna){
+        }else if(i == R.id.vector_antennaF){
             Intent intent = new Intent(InicioLogado.this,InicioAvancado.class);
             startActivity(intent);
 

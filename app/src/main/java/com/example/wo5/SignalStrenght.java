@@ -78,6 +78,7 @@ public class SignalStrenght extends AppCompatActivity {
 //        graph1.getViewport().setScrollable(true);
 
 
+
         new SpeedTestTaskDl().execute();
         // custom label formatter to show currency "EUR"
 //        graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -107,8 +108,32 @@ public class SignalStrenght extends AppCompatActivity {
         SignalStrengthsListener ss = new SignalStrengthsListener();
         ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
 
-        Intent intent = new Intent(SignalStrenght.this,Resultado.class);
-        startActivity(intent);
+
+
+        String mainActivity = getIntent().getStringExtra("MainActivity");
+        String inicioAvancado = getIntent().getStringExtra("InicioAvancado");
+        Log.d(TAG,"Extra " + mainActivity);
+        Log.d(TAG,"Extra " + inicioAvancado);
+        if(mainActivity != null){
+                Intent intent = new Intent(SignalStrenght.this,Resultado.class);
+                intent.putExtra(TAG,TAG);
+                startActivity(intent);
+        }
+        if(inicioAvancado != null){
+                Intent intent = new Intent(SignalStrenght.this,InicioAvancado.class);
+                intent.putExtra(TAG,TAG);
+                startActivity(intent);
+
+        }
+
+
+
+
+
+
+
+
+
 
     }
 

@@ -37,10 +37,10 @@ public class Fragment_ extends androidx.fragment.app.Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView textView = view.findViewById(R.id.textView);
+        TextView textView = view.findViewById(R.id.textViewSwitch1);
         textView.setText("Esse é um fragment");
 
-        graphFragment = view.findViewById(R.id.graphFragment);
+        graphFragment = view.findViewById(R.id.inicioLogadoFragment);
         graphFragment.getViewport().setXAxisBoundsManual(true);
         graphFragment.getViewport().setMinX(0);
         graphFragment.getViewport().setMaxX(80);

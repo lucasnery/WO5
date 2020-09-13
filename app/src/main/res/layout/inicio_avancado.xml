@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewLogoTexto2" />
 
     <View
-        android:id="@+id/vector_plus"
+        android:id="@+id/vector_plus2"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
@@ -51,7 +51,7 @@
         android:layout_marginBottom="6dp"
         android:background="@drawable/ic_vector_bar"
         app:layout_constraintBottom_toBottomOf="@+id/bg2"
-        app:layout_constraintStart_toEndOf="@+id/vector_plus"
+        app:layout_constraintStart_toEndOf="@+id/vector_plus2"
         app:layout_constraintTop_toTopOf="@+id/bg2"
         app:layout_constraintVertical_bias="0.875" />
 
@@ -139,8 +139,19 @@
         android:text="Sair"
         android:textAlignment="center"
         android:textAppearance="@style/entrar"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/imageViewLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <fragment
+        android:id="@+id/avancadoFragment"
+        android:name="com.example.wo5.LogoFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

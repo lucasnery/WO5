@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
 
     private FirebaseAuth mAuth;
-    private static final String TAG = "Login";
+    private static final String TAG = "MainActivity";
+
 
 
     @Override
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,com.example.wo5.SignalStrenght.class);
+                intent.putExtra(TAG, this.getClass().getName());
                 startActivity(intent);
             }
         });
@@ -60,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mAuth.getCurrentUser() == null){
                     Intent intent = new Intent(MainActivity.this,Login.class);
+                    intent.putExtra(TAG, this.getClass().getName());
                     startActivity(intent);
                 }
                 else {
                     Intent intent = new Intent(MainActivity.this, InicioLogado.class);
+                    intent.putExtra(TAG, this.getClass().getName());
                     startActivity(intent);
                 }
             }
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this,SignalStrenght.class);
+                intent.putExtra(TAG,TAG);
                 startActivity(intent);
                 //Intent intent1 = new Intent(MainActivity.this,Resultado.class);
                 //startActivity(intent1);

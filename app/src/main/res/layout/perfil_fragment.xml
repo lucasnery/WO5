@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="false">
+
+    <TextView
+        android:id="@+id/textViewSwitch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Guardar testes"
+        android:textAlignment="textStart"
+        android:textColor="@color/darkbluecolor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchPerfil3"
+        app:layout_constraintStart_toEndOf="@+id/switchPerfil3"
+        app:layout_constraintTop_toTopOf="@+id/switchPerfil3" />
+
+    <TextView
+        android:id="@+id/textViewSwitch4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Guardar relatórios"
+        android:textAlignment="textStart"
+        android:textColor="@color/darkbluecolor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchPerfil4"
+        app:layout_constraintStart_toEndOf="@+id/switchPerfil4"
+        app:layout_constraintTop_toTopOf="@+id/switchPerfil4" />
+
+    <TextView
+        android:id="@+id/textViewSwitch5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Guardar Amostras"
+        android:textAlignment="textStart"
+        android:textColor="@color/darkbluecolor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchPerfil5"
+        app:layout_constraintStart_toEndOf="@+id/switchPerfil5"
+        app:layout_constraintTop_toTopOf="@+id/switchPerfil5" />
+
+    <TextView
+        android:id="@+id/textViewEngenharia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_rectangle_gray"
+        android:fontFamily="@font/inter_medium"
+        android:text="   Engenharia"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/textViewAdminstrador"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewAdminstrador"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdminstrador" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_group_1" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonPhoto"
+        app:layout_constraintEnd_toStartOf="@+id/textViewBasico"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonPhoto"
+        app:srcCompat="@drawable/ic_pen" />
+
+    <TextView
+        android:id="@+id/textViewAdminstrador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_rectangle_blue"
+        android:fontFamily="@font/inter_medium"
+        android:text="   Administrador"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewComercial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_rectangle_gray"
+        android:fontFamily="@font/inter_medium"
+        android:text="   Comercial"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/textViewEngenharia"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewEngenharia"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEngenharia" />
+
+    <TextView
+        android:id="@+id/textViewTecnico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_rectangle_gray"
+        android:fontFamily="@font/inter_medium"
+        android:text="   Técnico"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/textViewComercial"
+        app:layout_constraintStart_toStartOf="@+id/textViewComercial"
+        app:layout_constraintTop_toBottomOf="@+id/textViewComercial" />
+
+    <TextView
+        android:id="@+id/textViewBasico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_rectangle_gray"
+        android:fontFamily="@font/inter_medium"
+        android:text="   Básico"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTecnico"
+        app:layout_constraintStart_toStartOf="@+id/textViewTecnico"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTecnico" />
+
+    <Switch
+        android:id="@+id/switchPerfil1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:thumbTint="@color/darkbluecolor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSenhaPerfilFrag" />
+
+    <Switch
+        android:id="@+id/switchPerfil2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:checked="false"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:thumbTint="@color/darkbluecolor"
+        app:layout_constraintEnd_toEndOf="@+id/switchPerfil1"
+        app:layout_constraintStart_toStartOf="@+id/switchPerfil1"
+        app:layout_constraintTop_toBottomOf="@+id/switchPerfil1" />
+
+    <Switch
+        android:id="@+id/switchPerfil3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:thumbTint="@color/darkbluecolor"
+        app:layout_constraintEnd_toEndOf="@+id/switchPerfil2"
+        app:layout_constraintStart_toStartOf="@+id/switchPerfil2"
+        app:layout_constraintTop_toBottomOf="@+id/switchPerfil2" />
+
+    <Switch
+        android:id="@+id/switchPerfil4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:thumbTint="@color/darkbluecolor"
+        app:layout_constraintEnd_toEndOf="@+id/switchPerfil3"
+        app:layout_constraintStart_toStartOf="@+id/switchPerfil3"
+        app:layout_constraintTop_toBottomOf="@+id/switchPerfil3" />
+
+    <Switch
+        android:id="@+id/switchPerfil5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="12dp"
+        android:checked="false"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:thumbTint="@color/darkbluecolor"
+        app:layout_constraintEnd_toEndOf="@+id/switchPerfil4"
+        app:layout_constraintStart_toStartOf="@+id/switchPerfil4"
+        app:layout_constraintTop_toBottomOf="@+id/switchPerfil4" />
+
+    <TextView
+        android:id="@+id/textViewSwitch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Permitir Notificações"
+        android:textAlignment="textStart"
+        android:textColor="@color/darkbluecolor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchPerfil1"
+        app:layout_constraintStart_toEndOf="@+id/switchPerfil1"
+        app:layout_constraintTop_toTopOf="@+id/switchPerfil1" />
+
+    <TextView
+        android:id="@+id/textViewSwitch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="Receber relatórios"
+        android:textAlignment="textStart"
+        android:textColor="@color/darkbluecolor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/switchPerfil2"
+        app:layout_constraintStart_toEndOf="@+id/switchPerfil2"
+        app:layout_constraintTop_toTopOf="@+id/switchPerfil2" />
+
+    <TextView
+        android:id="@+id/textViewExcluirConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Excluir sua conta e seus testes"
+        android:textColor="#830D0D"
+        app:layout_constraintStart_toStartOf="@+id/switchPerfil5"
+        app:layout_constraintTop_toBottomOf="@+id/switchPerfil5" />
+
+    <EditText
+        android:id="@+id/NomePerfilFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_bg"
+        android:ems="10"
+        android:fontFamily="@font/inter_medium"
+        android:hint="@string/digite_seu_nome"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColor="#BDBDBD"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonPhoto" />
+
+    <EditText
+        android:id="@+id/editTextEmailPerfilFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_bg"
+        android:ems="10"
+        android:fontFamily="@font/inter_medium"
+        android:hint="@string/digite_seu_email"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColor="#BDBDBD"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/NomePerfilFrag"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/NomePerfilFrag"
+        app:layout_constraintTop_toBottomOf="@+id/NomePerfilFrag" />
+
+    <EditText
+        android:id="@+id/editTextSenhaPerfilFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_bg"
+        android:ems="10"
+        android:fontFamily="@font/inter_medium"
+        android:hint="@string/digite_sua_senha"
+        android:importantForAutofill="no"
+        android:inputType="numberPassword"
+        android:singleLine="false"
+        android:textAlignment="center"
+        android:textColor="#BDBDBD"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailPerfilFrag"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailPerfilFrag"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailPerfilFrag" />
+</androidx.constraintlayout.widget.ConstraintLayout>

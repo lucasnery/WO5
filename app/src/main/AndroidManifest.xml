@@ -30,6 +30,7 @@
         <activity android:name=".InicioLogado"></activity>
         <activity android:name=".Resultado"></activity>
         <activity android:name=".InicioAvancado"></activity>
+        <activity android:name=".PerfilFragment"></activity>
 
 
         <meta-data

@@ -5,12 +5,12 @@
     android:orientation="vertical">
 
     <com.jjoe64.graphview.GraphView
-        android:id="@+id/graphFragment"
+        android:id="@+id/inicioLogadoFragment"
         android:layout_width="match_parent"
         android:layout_height="200dip" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewSwitch1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="TextView" />
