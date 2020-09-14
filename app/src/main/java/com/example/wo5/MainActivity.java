@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     String singleton;
     SignalStrenght ss;
     private static final int PERMISSION_ACCESS_FINE_LOCATION = 1;
-
     private FirebaseAuth mAuth;
     private static final String TAG = "MainActivity";
 

@@ -77,7 +77,7 @@ public class SignalStrenght extends AppCompatActivity {
 //        graph1.getViewport().setMaxX(80);
 //        graph1.getViewport().setScrollable(true);
 
-
+        getCurrentLocation();
         new SpeedTestTaskDl().execute();
         // custom label formatter to show currency "EUR"
 //        graph1.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
@@ -102,7 +102,7 @@ public class SignalStrenght extends AppCompatActivity {
 //
 //             }
         //});
-        getCurrentLocation();
+
 
         SignalStrengthsListener ss = new SignalStrengthsListener();
         ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
@@ -230,6 +230,7 @@ public class SignalStrenght extends AppCompatActivity {
                         measurement.setCellIdentity(cellIdentity);
                         cellSignal = new CellSignal(rsrp, rsrq, snr, ta, asu, cqi, dbm, level, rssi);
                         measurement.setCellSignal(cellSignal);
+                        getCurrentLocation();
                         location = new Location(longitude, latitude, altitude);
                         measurement.setLocation(location);
                         dateTime = new DateTime(time, date);

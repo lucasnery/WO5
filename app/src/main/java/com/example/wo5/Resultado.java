@@ -36,7 +36,9 @@ public class Resultado extends AppCompatActivity {
         String classname = getIntent().getStringExtra("SignalStreght");
         textViewEntrarResultado = findViewById(R.id.textViewEntrarResultado);
         mAuth = FirebaseAuth.getInstance();
+
         createView();
+
         if(buttonHistorico != null){
             buttonHistorico.setVisibility(View.INVISIBLE);
         }

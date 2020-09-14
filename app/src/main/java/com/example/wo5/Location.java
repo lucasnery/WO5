@@ -21,6 +21,9 @@ public class Location {
         this.latitude = latitude;
         this.altitude = altitude;
     }
+    public Location(){
+
+    }
 
     public String getLongitude() {
         return longitude;

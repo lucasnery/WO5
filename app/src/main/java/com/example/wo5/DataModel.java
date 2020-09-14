@@ -1,5 +1,6 @@
 package com.example.wo5;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -68,7 +69,7 @@ public class DataModel {
     }
 
     public void saveLog(String text){
-        File logFile = new File("/data/data/com.example.wo5/Log/log.txt");
+        @SuppressLint("SdCardPath") File logFile = new File("/data/data/com.example.wo5/Log/log.txt");
         if(!logFile.exists()){
             try {
                 logFile.createNewFile();
