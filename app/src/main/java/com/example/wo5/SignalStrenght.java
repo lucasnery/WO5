@@ -120,6 +120,7 @@ public class SignalStrenght extends AppCompatActivity {
         }
         if (inicioAvancado != null) {
             Intent intent = new Intent(SignalStrenght.this, InicioAvancado.class);
+
             intent.putExtra(TAG, TAG);
             startActivity(intent);
 

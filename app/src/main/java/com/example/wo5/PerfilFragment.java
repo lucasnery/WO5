@@ -33,6 +33,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     TextView NomePerfilFrag;
     TextView textViewExcluirConta;
     TextView editTextEmailPerfilFrag;
+    TextView textViewRecuperacaoSenha;
 
 
 
@@ -50,7 +51,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         NomePerfilFrag = view.findViewById(R.id.NomePerfilFrag);
         textViewExcluirConta = view.findViewById(R.id.textViewExcluirConta);
         editTextEmailPerfilFrag = view.findViewById(R.id.editTextEmailPerfilFrag);
+        textViewRecuperacaoSenha = view.findViewById(R.id.textViewRecuperacaoSenha);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        DateTime datetimeSenha = DataModel.getInstance().getRecuperarSenhaDatetime();
+        if(datetimeSenha != null){
+            textViewRecuperacaoSenha.setText(datetimeSenha.getTime()  + " " +  datetimeSenha.getDate());
+        }
 
         getFirebaseUser();
 
