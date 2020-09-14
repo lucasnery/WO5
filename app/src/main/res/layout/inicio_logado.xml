@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <View
-        android:id="@+id/vector_dashboard"
+        android:id="@+id/vector_dashboard2"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_alignParentLeft="true"
@@ -100,7 +100,7 @@
         android:layout_marginStart="42dp"
         android:background="@drawable/ic_vector_config"
         app:layout_constraintBottom_toBottomOf="@+id/bg"
-        app:layout_constraintStart_toEndOf="@+id/vector_dashboard"
+        app:layout_constraintStart_toEndOf="@+id/vector_dashboard2"
         app:layout_constraintTop_toTopOf="@+id/bg" />
 
     <View

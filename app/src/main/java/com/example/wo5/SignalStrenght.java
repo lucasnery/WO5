@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
@@ -63,7 +64,6 @@ public class SignalStrenght extends AppCompatActivity {
     private Measurement meas;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +76,6 @@ public class SignalStrenght extends AppCompatActivity {
 //        graph1.getViewport().setMinX(0);
 //        graph1.getViewport().setMaxX(80);
 //        graph1.getViewport().setScrollable(true);
-
 
 
         new SpeedTestTaskDl().execute();
@@ -102,44 +101,41 @@ public class SignalStrenght extends AppCompatActivity {
 //
 //
 //             }
-    //});
+        //});
         getCurrentLocation();
 
         SignalStrengthsListener ss = new SignalStrengthsListener();
         ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
 
-
-
         String mainActivity = getIntent().getStringExtra("MainActivity");
         String inicioAvancado = getIntent().getStringExtra("InicioAvancado");
-        Log.d(TAG,"Extra " + mainActivity);
-        Log.d(TAG,"Extra " + inicioAvancado);
-        if(mainActivity != null){
-                Intent intent = new Intent(SignalStrenght.this,Resultado.class);
-                intent.putExtra(TAG,TAG);
-                startActivity(intent);
+        String resultado = getIntent().getStringExtra("Resultado");
+        Log.d(TAG, "Extra " + mainActivity);
+        Log.d(TAG, "Extra " + inicioAvancado);
+        Log.d(TAG, "Extra " + resultado);
+        if (mainActivity != null) {
+            Intent intent = new Intent(SignalStrenght.this, Resultado.class);
+            intent.putExtra(TAG, TAG);
+            startActivity(intent);
         }
-        if(inicioAvancado != null){
-                Intent intent = new Intent(SignalStrenght.this,InicioAvancado.class);
-                intent.putExtra(TAG,TAG);
-                startActivity(intent);
+        if (inicioAvancado != null) {
+            Intent intent = new Intent(SignalStrenght.this, InicioAvancado.class);
+            intent.putExtra(TAG, TAG);
+            startActivity(intent);
 
         }
+        if (resultado != null) {
+            Intent intent = new Intent(SignalStrenght.this, Resultado.class);
+            intent.putExtra(TAG, TAG);
+            startActivity(intent);
 
-
-
-
-
-
-
-
-
-
+        }
     }
 
 
     @Override
     protected void onResume() {
+        getCurrentLocation();
         super.onResume();
 
         //executeTest();
@@ -147,6 +143,7 @@ public class SignalStrenght extends AppCompatActivity {
 
     @Override
     protected void onRestart() {
+        getCurrentLocation();
         super.onRestart();
     }
 
@@ -157,30 +154,30 @@ public class SignalStrenght extends AppCompatActivity {
         DataModel.getInstance().setResultThpUl(null);
     }
 
-    private void executeTest(){
+    private void executeTest() {
         getCurrentLocation();
 
         SignalStrengthsListener ss = new SignalStrengthsListener();
         ((TelephonyManager) getSystemService(TELEPHONY_SERVICE)).listen(ss, SignalStrengthsListener.LISTEN_SIGNAL_STRENGTHS);
 
-        Intent intent = new Intent(SignalStrenght.this,Resultado.class);
+        Intent intent = new Intent(SignalStrenght.this, Resultado.class);
         startActivity(intent);
     }
 
-    protected class SignalStrengthsListener extends PhoneStateListener{
-    @SuppressLint("MissingPermission")
-    @Override
+    protected class SignalStrengthsListener extends PhoneStateListener {
+        @SuppressLint("MissingPermission")
+        @Override
         public void onSignalStrengthsChanged(android.telephony.SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
             Measurement measurement = new Measurement();
             tm = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
             cellInfoList = tm.getAllCellInfo();
-           //Log.d(TAG, String.valueOf(tm.getAllCellInfo()));
-            for(CellInfo cellInfo : cellInfoList){
+            //Log.d(TAG, String.valueOf(tm.getAllCellInfo()));
+            for (CellInfo cellInfo : cellInfoList) {
                 //Information about LTE network
-                if(cellInfo instanceof CellInfoLte){
+                if (cellInfo instanceof CellInfoLte) {
                     //Cell registered is server
-                    if(cellInfo.isRegistered()){
+                    if (cellInfo.isRegistered()) {
                         //Cell Identity
                         int cellPci = ((CellInfoLte) cellInfo).getCellIdentity().getPci();
                         int ci = ((CellInfoLte) cellInfo).getCellIdentity().getCi();
@@ -213,34 +210,34 @@ public class SignalStrenght extends AppCompatActivity {
                         int dbm = ((CellInfoLte) cellInfo).getCellSignalStrength().getDbm();
                         int level = ((CellInfoLte) cellInfo).getCellSignalStrength().getLevel();
                         int rssi = ((CellInfoLte) cellInfo).getCellSignalStrength().getRssi();
-                        Log.d(TAG,"Server Cell " + date + " " + time + " " + cellPci + " " + ci + " " + enobebId + " " + tac +
+                        Log.d(TAG, "Server Cell " + date + " " + time + " " + cellPci + " " + ci + " " + enobebId + " " + tac +
                                 " " + earfcn + " " +
-                                operatorAlphaShort + " " + mcc + " " + mnc +  " " + rsrp + " " +
-                                rsrq + " " + snr  + " " + ta + " " + asu + " " + cqi + " " + dbm + " " + rssi);
+                                operatorAlphaShort + " " + mcc + " " + mnc + " " + rsrp + " " +
+                                rsrq + " " + snr + " " + ta + " " + asu + " " + cqi + " " + dbm + " " + rssi);
                         try {
                             getCurrentLocation();
-                        }catch (Exception e){
-                            Log.w(TAG,e.getMessage());
+                        } catch (Exception e) {
+                            Log.w(TAG, e.getMessage());
                         }
                         try {
                             getDateTime();
-                        }catch (Exception e){
-                            Log.w(TAG,e.getMessage());
+                        } catch (Exception e) {
+                            Log.w(TAG, e.getMessage());
                         }
 
 
-                        cellIdentity = new CellIdentity(cellPci,ci,enobebId,tac,earfcn,operatorLong,operatorAlphaShort,mcc,mnc,detail);
+                        cellIdentity = new CellIdentity(cellPci, ci, enobebId, tac, earfcn, operatorLong, operatorAlphaShort, mcc, mnc, detail);
                         measurement.setCellIdentity(cellIdentity);
-                        cellSignal = new CellSignal(rsrp,rsrq,snr,ta,asu,cqi,dbm,level,rssi);
+                        cellSignal = new CellSignal(rsrp, rsrq, snr, ta, asu, cqi, dbm, level, rssi);
                         measurement.setCellSignal(cellSignal);
-                        location = new Location(longitude,latitude,altitude);
+                        location = new Location(longitude, latitude, altitude);
                         measurement.setLocation(location);
-                        dateTime = new DateTime(time,date);
+                        dateTime = new DateTime(time, date);
                         measurement.setDateTime(dateTime);
                         DataModel.getInstance().setMeasurementCurrent(measurement);
 
-                    //Cell no registered is neighbor
-                    }else{
+                        //Cell no registered is neighbor
+                    } else {
                         int cellPci = ((CellInfoLte) cellInfo).getCellIdentity().getPci();
                         int ci = ((CellInfoLte) cellInfo).getCellIdentity().getCi();
                         double enobebId = ci / 256;
@@ -261,15 +258,15 @@ public class SignalStrenght extends AppCompatActivity {
                         int dbm = ((CellInfoLte) cellInfo).getCellSignalStrength().getDbm();
                         int level = ((CellInfoLte) cellInfo).getCellSignalStrength().getLevel();
                         int rssi = ((CellInfoLte) cellInfo).getCellSignalStrength().getRssi();
-                        Log.d(TAG,"Neighbor Cell " + date + " " + time + " " + cellPci + " " + earfcn + " " +
-                                rsrp + " " +  rsrq + " " + asu + " " + rssi);
+                        Log.d(TAG, "Neighbor Cell " + date + " " + time + " " + cellPci + " " + earfcn + " " +
+                                rsrp + " " + rsrq + " " + asu + " " + rssi);
                     }
 
                 }
-                if(cellInfo instanceof CellInfoWcdma){
+                if (cellInfo instanceof CellInfoWcdma) {
 
                 }
-                if(cellInfo instanceof CellInfoGsm){
+                if (cellInfo instanceof CellInfoGsm) {
 
                 }
 
@@ -277,31 +274,32 @@ public class SignalStrenght extends AppCompatActivity {
         }
     }
 
-    private void requestFineCoarseLocation(){
-        if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)){
-            if(checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},PERMISSION_ACCESS_FINE_LOCATION);
+    private void requestFineCoarseLocation() {
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_ACCESS_FINE_LOCATION);
             }
         }
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == PERMISSION_ACCESS_FINE_LOCATION){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == PERMISSION_ACCESS_FINE_LOCATION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this,
                         "ACCESS FINE LOCATION OK",
                         Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 Toast.makeText(this,
                         "ACCESS FINE LOCATION NOK",
                         Toast.LENGTH_LONG).show();
             }
         }
     }
-    @SuppressLint("MissingPermission")
+
     public void getCurrentLocation() {
         mlocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mlocationListener = new LocationListener() {
@@ -311,6 +309,7 @@ public class SignalStrenght extends AppCompatActivity {
                 latitude = String.valueOf(location.getLatitude());
                 altitude = String.valueOf(location.getAltitude());
                 Log.d("Position", "Latitude: " + latitude + " Longitude: " + longitude + " Altitude: " + altitude);
+
             }
 
             @Override
@@ -325,6 +324,17 @@ public class SignalStrenght extends AppCompatActivity {
             public void onProviderDisabled(String provider) {
             }
         };
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            requestFineCoarseLocation();
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mlocationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, mlocationListener);
     }
 

@@ -23,6 +23,9 @@ public class CellSignal {
         this.level = level;
         this.rssi = rssi;
     }
+    public CellSignal(){
+
+    }
 
 
 

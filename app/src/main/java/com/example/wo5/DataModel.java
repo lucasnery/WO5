@@ -2,9 +2,17 @@ package com.example.wo5;
 
 import android.content.Context;
 import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -25,6 +33,7 @@ public class DataModel {
     private Double resultThpDl;
     private Double resultThpUl;
     private TesteThp testeThp;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
     private static DataModel instance = null;
@@ -48,7 +57,12 @@ public class DataModel {
     //Methods
     public void thpTest() {
         TesteThp testeThp = new TesteThp(resultThpDl,resultThpUl,measurementCurrent);
+        Log.d(TAG, "Latitude" + measurementCurrent.getLocation().getLatitude());
         testThpList.add(testeThp);
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser() != null){
+            saveFirebase();
+        }
         Log.d(TAG,testThpList.toString());
 
     }
@@ -75,6 +89,88 @@ public class DataModel {
             e.printStackTrace();
         }
     }
+
+    public void saveFirebase(){
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getUid() != null) {
+
+            DatabaseReference myRef = database.getReference(mAuth.getUid());
+            myRef.child("ThpTest");
+            String children = measurementCurrent.getDateTime().getDate();
+            String [] childArr = children.split("/");
+            String child = childArr[2] + childArr[1] + childArr[0] + " " +  measurementCurrent.getDateTime().getTime();;
+            Log.d("Child",children);
+            myRef.child("ThpTest").child(child).child("Datetime").setValue(measurementCurrent.getDateTime());
+            myRef.child("ThpTest").child(child).child("CellIdentity").setValue(measurementCurrent.getCellIdentity());
+            myRef.child("ThpTest").child(child).child("CellSignal").setValue(measurementCurrent.getCellSignal());
+            myRef.child("ThpTest").child(child).child("Location").setValue(measurementCurrent.getLocation());
+            myRef.child("ThpTest").child(child).child("ThpDl").setValue(resultThpDl);
+            myRef.child("ThpTest").child(child).child("ThpUl").setValue(resultThpUl);
+            getTestChange();
+            Log.d("Firebase data myRef", myRef.toString());
+            getTestChange();
+        }
+    }
+
+    public void getAllTest(){
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getUid() != null){
+            DatabaseReference myRef = database.getReference(mAuth.getUid());
+            myRef.child("ThpTest").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot s: snapshot.getChildren()){
+                        String thpDl = String.valueOf(s.child("ThpDl").getValue());
+                        String thpUl = String.valueOf(s.child("ThpUl").getValue());
+                        String date  = String.valueOf(s.child("Datetime").child("date").getValue());
+                        String time  = String.valueOf(s.child("Datetime").child("time").getValue());
+                        Log.d(TAG,"thpDl " + thpDl + " thpUL: " + thpUl + " date " + date + " time " + time);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
+    }
+
+    public void getTestChange(){
+
+        if(mAuth.getUid() != null){
+            DatabaseReference myRef = database.getReference(mAuth.getUid());
+            myRef.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAG,"onChildAdded " + snapshot.toString());
+                    for(DataSnapshot s: snapshot.getChildren()){
+                        String thpDl = String.valueOf(s.child("ThpDl").getValue());
+                        String thpUl = String.valueOf(s.child("ThpUl").getValue());
+                        String date  = String.valueOf(s.child("Datetime").child("date").getValue());
+                        String time  = String.valueOf(s.child("Datetime").child("time").getValue());
+                        Log.d(TAG,"thpDl " + thpDl + " thpUL: " + thpUl + " date " + date + " time " + time);
+                    }
+                }
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAG,"onChildChanged " + snapshot.toString());
+                }
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    Log.d(TAG,"onChildRemoved " + snapshot.toString());
+                }
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Log.d(TAG,"onChildRemoded hist " + snapshot.toString());
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.d(TAG,"onChildCancelled " + error.toString());
+                }
+            });
+        }
+    }
+
+
 
     public void signOut(){
         mAuth.signOut();

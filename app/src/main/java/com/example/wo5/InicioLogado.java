@@ -2,6 +2,7 @@ package com.example.wo5;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -24,7 +25,7 @@ public class InicioLogado extends AppCompatActivity implements View.OnClickListe
         mBinding.textViewSair.setOnClickListener(this);
         mBinding.vectorUser.setOnClickListener(this);
         mBinding.vectorAntennaF.setOnClickListener(this);
-        mBinding.vectorDashboard.setOnClickListener(this);
+        mBinding.vectorDashboard2.setOnClickListener(this);
         mBinding.vectorAdmin.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
 
@@ -57,7 +58,8 @@ public class InicioLogado extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(InicioLogado.this,InicioAvancado.class);
             startActivity(intent);
 
-        }else if(i == R.id.vectorDashboard){
+        }else if(i == R.id.vector_dashboard2){
+            DataModel.getInstance().getAllTest();
 
         }else if(i == R.id.vectorAdmin){
 
