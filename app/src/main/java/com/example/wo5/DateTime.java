@@ -9,9 +9,6 @@ public class DateTime {
         this.time = time;
         this.date = date;
     }
-    public DateTime(){
-
-    }
 
     public String getTime() {
         return time;

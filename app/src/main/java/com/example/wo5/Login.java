@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.text.DateFormat;
 //import com.example.wo5.databinding.login;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
@@ -28,8 +26,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private LoginBinding mBinding;
-    String time;
-    String date;
 
 
     @Override
@@ -75,10 +71,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             mBinding.buttonRecuperarSenha.setVisibility(View.VISIBLE);
         }else if(i == R.id.buttonRecuperarSenha){
             String email = String.valueOf(mBinding.editTextEmail.getText());
-
-
-            DataModel.getInstance().setRecuperarSenhaDatetime(getDateTime());
-
             resetPassword(email);
             Toast.makeText(Login.this, "Você receberá um email de recuperação de senha.",
                     Toast.LENGTH_LONG).show();
@@ -158,7 +150,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                     Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            DataModel.getInstance().saveRecuperarSenhaDatetime();
                             Intent intent = new Intent(Login.this, InicioLogado.class);
                             startActivity(intent);
                         } else {
@@ -335,12 +326,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             mBinding.progressBarEntrar.setVisibility(View.INVISIBLE);
         }
     }
-    public DateTime getDateTime(){
-        this.time = DateFormat.getTimeInstance(DateFormat.MEDIUM).format(System.currentTimeMillis());
-        this.date = DateFormat.getDateInstance(DateFormat.SHORT).format(System.currentTimeMillis());
-        return new DateTime(date,time);
-    }
-
 
 
 
