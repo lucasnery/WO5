@@ -34,6 +34,8 @@ public class DataModel {
     private Double resultThpDl;
     private Double resultThpUl;
     private TesteThp testeThp;
+    //Variável que vai manter a status da conexão
+    private String statusConexao;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -107,6 +109,8 @@ public class DataModel {
             myRef.child("ThpTest").child(child).child("Location").setValue(measurementCurrent.getLocation());
             myRef.child("ThpTest").child(child).child("ThpDl").setValue(resultThpDl);
             myRef.child("ThpTest").child(child).child("ThpUl").setValue(resultThpUl);
+            //Manter no banco
+            myRef.child("ThpTest").child(child).child("Status").setValue(statusConexao);
             getTestChange();
             Log.d("Firebase data myRef", myRef.toString());
             getTestChange();
@@ -231,6 +235,10 @@ public class DataModel {
 
     public void setUser(FirebaseUser user) {
         this.user = user;
+    }
+
+    public void setStatus(String status){
+        this.statusConexao = status;
     }
 
 

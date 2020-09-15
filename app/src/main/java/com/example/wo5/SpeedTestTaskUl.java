@@ -50,6 +50,7 @@ public class SpeedTestTaskUl extends AsyncTask<Void, Void, String> {
                 Log.v("speedtestUL","ERROR" + errorMessage);
             }
         });
+
         speedTestSocket.setUploadSetupTime(1);
         speedTestSocket.startFixedUpload("http://ipv4.ikoula.testdebit.info/", 100000000, 3500, 10);
 

@@ -46,16 +46,18 @@ public class Resultado extends AppCompatActivity {
         textViewEntrarResultado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mAuth.getCurrentUser() == null){
+                //Vai mostrar o resultado na tela de teste independente de estar logado ou não
+
+                //if(mAuth.getCurrentUser() == null){
                     Intent intent = new Intent(Resultado.this,Login.class);
                     intent.putExtra(TAG, this.getClass().getName());
                     startActivity(intent);
-                }
-                else {
-                    Intent intent = new Intent(Resultado.this, InicioLogado.class);
-                    intent.putExtra(TAG, this.getClass().getName());
-                    startActivity(intent);
-                }
+                //}
+                //else {
+                //    Intent intent = new Intent(Resultado.this, InicioLogado.class);
+                //    intent.putExtra(TAG, this.getClass().getName());
+                //    startActivity(intent);
+                //}
             }
         });
 
@@ -144,22 +146,33 @@ public class Resultado extends AppCompatActivity {
                         textViewAvaliacao.setText("Sua conexão com a Internet consegue lidar com " +
                                 "vários dispositivos fazendo streaming de vídeos em HD, " +
                                 "videoconferência e jogos ao mesmo tempo.");
+                        DataModel.getInstance().setStatus("Excelente");
                     }
                     else if(thpDl <= 25.0 && thpDl > 10.0){
                         textViewAvaliacaoResumo.setText("Ótima");
                         textViewAvaliacao.setText("Sua conexão com a Internet consegue lidar " +
                                 "com vários dispositivos fazendo streaming de vídeos em HD ao mesmo tempo.");
+                        DataModel.getInstance().setStatus("Ótima");
                     }
-                    else if(thpDl <= 10.0 && thpDl > 5.0){
+                    //Categoria nova criada:
+                    else if(thpDl <= 10.0 && thpDl > 6.0){
+                        textViewAvaliacaoResumo.setText("Quase ótima!");
+                        textViewAvaliacao.setText("Sua conexão com a Internet consegue lidar " +
+                                "com vários dispositivos fazendo streaming de vídeos em HD ao mesmo tempo.");
+                        DataModel.getInstance().setStatus("Quase ótima");
+                    }
+                    else if(thpDl <= 6.0 && thpDl > 5.0){
                         textViewAvaliacaoResumo.setText("Boa");
                         textViewAvaliacao.setText("Sua conexão com a Internet consegue lidar " +
                                 "com streaming de vídeos e navegação. " +
                                 "Se vários dispositivos estiverem utilizando haverá lentidão.");
+                        DataModel.getInstance().setStatus("Boa");
                     }
                     else if(thpDl <= 5.0 && thpDl > 0.0){
                         textViewAvaliacaoResumo.setText("Ruim");
                         textViewAvaliacao.setText("Sua conexão com a Internet oferece apenas " +
                                 "navegação básica.");
+                        DataModel.getInstance().setStatus("Ruim");
                     }
                     else {
                         textViewAvaliacaoResumo.setText("Sem conexão");
@@ -184,6 +197,10 @@ public class Resultado extends AppCompatActivity {
 
                     }
                 }
+
+
+
+
             }
 
         };
