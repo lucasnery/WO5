@@ -34,12 +34,6 @@ public class DataModel {
     private Double resultThpDl;
     private Double resultThpUl;
     private TesteThp testeThp;
-    private DateTime recuperarSenhaDatetime;
-
-
-
-    private DateTime lastChangePassword;
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -59,19 +53,6 @@ public class DataModel {
         if(instance == null)
             instance = new DataModel();
         return instance;
-    }
-
-
-    public void saveRecuperarSenhaDatetime(){
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getUid() != null) {
-
-            DatabaseReference myRef = database.getReference(mAuth.getUid());
-            myRef.child("RequestChangePassword").setValue(recuperarSenhaDatetime);
-            getTestChange();
-        }
-
-
     }
 
     //Methods
@@ -132,27 +113,6 @@ public class DataModel {
         }
     }
 
-    public void getChangePasswordFirebase(){
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getUid() != null){
-            DatabaseReference myRef = database.getReference(mAuth.getUid());
-            myRef.child("RequestChangePassword").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for(DataSnapshot s: snapshot.getChildren()){
-                        String date  = String.valueOf(s.child("date").getValue());
-                        String time  = String.valueOf(s.child("time").getValue());
-                        lastChangePassword = new DateTime(date,time);
-
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        }
-    }
-
     public void getAllTest(){
         mAuth = FirebaseAuth.getInstance();
         if(mAuth.getUid() != null){
@@ -174,7 +134,6 @@ public class DataModel {
             });
         }
     }
-
 
     public void getTestChange(){
 
@@ -285,22 +244,6 @@ public class DataModel {
 
     public void setSingleton(String singleton) {
         this.singleton = singleton;
-    }
-
-    public DateTime getRecuperarSenhaDatetime() {
-        return recuperarSenhaDatetime;
-    }
-
-    public void setRecuperarSenhaDatetime(DateTime recuperarSenhaDatetime) {
-        this.recuperarSenhaDatetime = recuperarSenhaDatetime;
-    }
-
-    public DateTime getLastChangePassword() {
-        return lastChangePassword;
-    }
-
-    public void setLastChangePassword(DateTime lastChangePassword) {
-        this.lastChangePassword = lastChangePassword;
     }
 
 
